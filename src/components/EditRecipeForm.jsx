@@ -62,11 +62,15 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
                 onChange={(e) => setCuisine(e.target.value)}
             />
 
-            <input
-                type="text"
+            <select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
-            />
+            >
+                <option value="">Select difficulty</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
 
             <input
                 type="text"
