@@ -6,6 +6,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
     const [cuisine, setCuisine] = useState("")
     const [difficulty, setDifficulty] = useState("")
     const [image, setImage] = useState("")
+    const [rating, setRating] = useState("")
     const [ingredients, setIngredients] = useState("")
     const [instructions, setInstructions] = useState("")
 
@@ -17,6 +18,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
             cuisine !== "" &&
             difficulty !== "" &&
             image !== "" &&
+            rating !== "" &&
             ingredients !== "" &&
             instructions !== ""
         ) {
@@ -26,7 +28,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
                 cuisine: cuisine,
                 difficulty: difficulty,
                 image: image,
-                rating: 4.5,
+                rating: Number(rating),
                 ingredients: ingredients.split(","),
                 instructions: instructions.split(",")
             }
@@ -39,6 +41,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
             setCuisine("")
             setDifficulty("")
             setImage("")
+            setRating("")
             setIngredients("")
             setInstructions("")
             setIsAddingRecipe(false)
@@ -49,6 +52,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
         <div className="form-box">
             <h2>Add Recipe</h2>
 
+            <label>Recipe Name</label>
             <input
                 type="text"
                 placeholder="Recipe name"
@@ -56,6 +60,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
                 onChange={(e) => setName(e.target.value)}
             />
 
+            <label>Cuisine</label>
             <input
                 type="text"
                 placeholder="Cuisine"
@@ -63,6 +68,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
                 onChange={(e) => setCuisine(e.target.value)}
             />
 
+            <label>Difficulty</label>
             <select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
@@ -73,6 +79,7 @@ export function AddRecipeForm({setIsAddingRecipe}) {
                 <option value="Hard">Hard</option>
             </select>
 
+            <label>Image URL</label>
             <input
                 type="text"
                 placeholder="Image URL"
@@ -80,12 +87,25 @@ export function AddRecipeForm({setIsAddingRecipe}) {
                 onChange={(e) => setImage(e.target.value)}
             />
 
+            <label>Rating</label>
+            <input
+                type="number"
+                placeholder="Rating from 1 to 5"
+                value={rating}
+                min="1"
+                max="5"
+                step="0.1"
+                onChange={(e) => setRating(e.target.value)}
+            />
+
+            <label>Ingredients</label>
             <textarea
                 placeholder="Ingredients separated by comma"
                 value={ingredients}
                 onChange={(e) => setIngredients(e.target.value)}
             />
 
+            <label>Instructions</label>
             <textarea
                 placeholder="Instructions separated by comma"
                 value={instructions}

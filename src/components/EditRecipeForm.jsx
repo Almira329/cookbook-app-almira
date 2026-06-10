@@ -6,6 +6,7 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
     const [cuisine, setCuisine] = useState(recipe.cuisine)
     const [difficulty, setDifficulty] = useState(recipe.difficulty)
     const [image, setImage] = useState(recipe.image)
+    const [rating, setRating] = useState(recipe.rating)
     const [ingredients, setIngredients] = useState(recipe.ingredients.join(","))
     const [instructions, setInstructions] = useState(recipe.instructions.join(","))
 
@@ -17,6 +18,7 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
             cuisine !== "" &&
             difficulty !== "" &&
             image !== "" &&
+            rating !== "" &&
             ingredients !== "" &&
             instructions !== ""
         ) {
@@ -29,6 +31,7 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
                             cuisine: cuisine,
                             difficulty: difficulty,
                             image: image,
+                            rating: Number(rating),
                             ingredients: ingredients.split(","),
                             instructions: instructions.split(",")
                         }
@@ -40,6 +43,7 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
             setCuisine("")
             setDifficulty("")
             setImage("")
+            setRating("")
             setIngredients("")
             setInstructions("")
             setIsEditingForm(false)
@@ -50,18 +54,21 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
         <div className="form-box">
             <h2>Edit Recipe</h2>
 
+            <label>Recipe Name</label>
             <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
 
+            <label>Cuisine</label>
             <input
                 type="text"
                 value={cuisine}
                 onChange={(e) => setCuisine(e.target.value)}
             />
 
+            <label>Difficulty</label>
             <select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
@@ -72,17 +79,30 @@ export function EditRecipeForm({recipe, setIsEditingForm}) {
                 <option value="Hard">Hard</option>
             </select>
 
+            <label>Image URL</label>
             <input
                 type="text"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
             />
 
+            <label>Rating</label>
+            <input
+                type="number"
+                value={rating}
+                min="1"
+                max="5"
+                step="0.1"
+                onChange={(e) => setRating(e.target.value)}
+            />
+
+            <label>Ingredients</label>
             <textarea
                 value={ingredients}
                 onChange={(e) => setIngredients(e.target.value)}
             />
 
+            <label>Instructions</label>
             <textarea
                 value={instructions}
                 onChange={(e) => setInstructions(e.target.value)}
